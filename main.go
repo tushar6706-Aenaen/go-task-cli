@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
 )
 
 func readTasks() []string {
@@ -32,16 +33,24 @@ func main() {
 		}
 		task := os.Args[2]
 
-		file, _ := os.OpenFile("tasks.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		file , _ := os.OpenFile(
+			"texts.txt",
+			os.O_APPEND|os.O_CREATE|os.O_WRONLY,
+			0644,
+		)
 		defer file.Close()
 
-		file.WriteString(task + "\n")
+		file.WriteString("[]"+ task + "\n")
 		fmt.Println("Task added ✅")
 
 	case "list":
+		tasks:=readTasks()
 
-		data, _ := os.ReadFile("tasks.txt")
-		fmt.Println(string(data))
+		for i , task := range tasks{
+			if task != "" {
+				fmt.Printf("%d. %s\n",i+1,task)
+			}
+		}
 	case "done":
 
 		fmt.Println("Done command selected")
