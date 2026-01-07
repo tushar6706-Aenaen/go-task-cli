@@ -3,7 +3,18 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
+
+func readTasks() []string {
+	data, err := os.ReadFile("tasks,txt")
+	if err != nil {
+		return []string{}
+	}
+
+	lines := strings.Split(string(data),"\n")
+	return lines
+}
 
 func main() {
 	if len(os.Args) < 2 {
@@ -29,10 +40,10 @@ func main() {
 
 	case "list":
 
-		data,_ :=os.ReadFile("tasks.txt")
+		data, _ := os.ReadFile("tasks.txt")
 		fmt.Println(string(data))
 	case "done":
-		
+
 		fmt.Println("Done command selected")
 	default:
 		fmt.Println("Unknown command")
