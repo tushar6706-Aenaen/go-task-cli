@@ -1,0 +1,3 @@
+[ ] learn go
+[x] work out
+[ ] study
